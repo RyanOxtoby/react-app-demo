@@ -124,7 +124,6 @@ describe('getGoTHouses', () => {
 
         const response = await getGoTHouses()
 
-        console.log(response)
         expect(response[0].CurrentLord).toBe('')
     })
 

@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from '@testing-library/react'
+import App from './App'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('renders logo', () => {
+    const { getByAltText } = render(<App />)
+
+    const image = getByAltText('logo')
+
+    expect(image.src).toContain('got')
+})
+
+test('renders display houses component', () => {
+    render(<App />)
+    const element = screen.getByTestId('displayHouses')
+    expect(element).toBeInTheDocument()
+})

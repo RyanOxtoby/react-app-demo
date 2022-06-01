@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './got-logo.jpeg'
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useState, useEffect } from 'react'
+import { getGoTHouses } from './services/apiOfFireAndIce'
+import DisplayHouses from './components/displayHouses.component'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [houses, setHouses] = useState([])
+
+    const fetchHouses = async () => {
+        setHouses(await getGoTHouses())
+    }
+
+    useEffect(() => {
+        fetchHouses()
+    }, [])
+    return (
+        <div className="App">
+            <img src={logo} alt="logo" />
+
+            <DisplayHouses houses={houses} testid="displayHouses" />
+        </div>
+    )
 }
 
-export default App;
+export default App
